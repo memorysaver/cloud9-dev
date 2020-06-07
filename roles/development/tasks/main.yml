@@ -11,6 +11,11 @@
   yum:
     name: "*"
     state: latest
+- name: install zsh
+  become: yes
+  yum:
+    name: "zsh"
+    state: latest
 - name: install mysql-devel
   become: yes
   yum:
