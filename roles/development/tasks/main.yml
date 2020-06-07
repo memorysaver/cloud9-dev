@@ -16,6 +16,25 @@
   yum:
     name: "zsh"
     state: latest
+- name: install the 'Development tools' package group
+  yum:
+    name: "@Development tools"
+    state: present
+- name: install python-devel
+  become: yes
+  yum:
+    name: "python-devel"
+    state: present
+- name: install atlas-sse3-devel
+  become: yes
+  yum:
+    name: "atlas-sse3-devel"
+    state: present
+- name: install lapack-devel
+  become: yes
+  yum:
+    name: "lapack-devel"
+    state: present
 - name: install mysql-devel
   become: yes
   yum:
