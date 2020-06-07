@@ -54,3 +54,12 @@
   loop: "{{ github_repos }}"
 - name: Install Oh-my-zsh
   shell: 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+- name: configure Oh-my-zsh
+  template:
+    src: zshrc.j2
+    dest: "/home/{{ ansible_user_id }}/.zshrc"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: 0644
+- name: Switch to ZSH
+  shell: 'zsh'
