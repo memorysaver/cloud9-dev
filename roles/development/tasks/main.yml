@@ -52,3 +52,5 @@
     dest: "/home/{{ ansible_user_id }}/github/{{ item.dir_name }}"
     accept_hostkey: yes
   loop: "{{ github_repos }}"
+- name: Install Oh-my-zsh
+  shell: 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
