@@ -82,3 +82,7 @@
     mode: 0644
 - name: install pyenv
   shell: 'curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash'
+- name: install python
+  shell: 'pyenv install 3.6.9'
+- name: setup python global environment
+  shell: 'pyenv global 3.6.9'
