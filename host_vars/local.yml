@@ -1,13 +1,7 @@
-git_client_name: Jason Miller
-git_client_email: jason@redconfetti.com
-timezone: America/Los_Angeles
+git_client_name: Memorysaver
+git_client_email: mfa1484@gmail.com
+timezone: Asia/Taipei
 github_repos:
   -
-    repo: git@github.com:redconfetti/redconfetti.github.io.git
-    dir_name: redconfetti.github.io
-  -
-    repo: git@github.com:redconfetti/cloud9-dev.git
+    repo: git@github.com:memorysaver/cloud9-dev.git
     dir_name: cloud9-dev
-  - 
-    repo: git@github.com:redconfetti/c11-examples.git
-    dir_name: c11-examples
