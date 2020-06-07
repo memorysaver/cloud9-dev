@@ -1,0 +1,49 @@
+---
+- debug: var=hostvars['hostname']
+- debug: var=hostvars['fqdn']
+- debug: var=hostvars['ansible_local']
+- debug: var=hostvars['ansible_playbook_python']
+- debug: var=hostvars['inventory_hostname']
+- debug: var=hostvars['inventory_file']
+- debug: var=hostvars['groups']
+- name: upgrade all packages
+  become: yes
+  yum:
+    name: "*"
+    state: latest
+- name: install mysql-devel
+  become: yes
+  yum:
+    name: "mysql-devel"
+    state: latest
+- name: install npm
+  become: yes
+  yum:
+    name: "npm"
+    state: latest
+- name: generate ssh key pair
+  command: 'ssh-keygen -q -t rsa -f /home/{{ ansible_user_id }}/.ssh/id_rsa -C "" -N ""'
+  args:
+    creates: "/home/{{ ansible_user_id }}/.ssh/id_rsa"
+- name: Read SSH public key to authorize
+  shell: "cat /home/{{ ansible_user_id }}/.ssh/id_rsa.pub"
+  register: ssh_pub_key
+- name: Authorize key with GitHub
+  local_action:
+    module: github_key
+    name: Cloud9-Dev
+    token: "{{ github_personal_access_token }}"
+    pubkey: "{{ ssh_pub_key.stdout }}"
+- name: configure git client
+  template:
+    src: gitconfig.j2
+    dest: "/home/{{ ansible_user_id }}/.gitconfig"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: 0644
+- name: clone github repos
+  git:
+    repo: "{{ item.repo }}"
+    dest: "/home/{{ ansible_user_id }}/github/{{ item.dir_name }}"
+    accept_hostkey: yes
+  loop: "{{ github_repos }}"
