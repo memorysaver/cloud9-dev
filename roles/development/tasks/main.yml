@@ -68,7 +68,7 @@
 - name: clone github repos
   git:
     repo: "{{ item.repo }}"
-    dest: "/home/{{ ansible_user_id }}/github/{{ item.dir_name }}"
+    dest: "/home/{{ ansible_user_id }}/environment/github/{{ item.dir_name }}"
     accept_hostkey: yes
   loop: "{{ github_repos }}"
 - name: install Oh-my-zsh
