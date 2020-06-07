@@ -52,7 +52,7 @@
     dest: "/home/{{ ansible_user_id }}/github/{{ item.dir_name }}"
     accept_hostkey: yes
   loop: "{{ github_repos }}"
-- name: Install Oh-my-zsh
+- name: install Oh-my-zsh
   shell: 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
 - name: configure Oh-my-zsh
   template:
@@ -61,5 +61,5 @@
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_id }}"
     mode: 0644
-- name: Switch to ZSH
-  shell: 'zsh'
+- name: install pyenv
+  shell: 'curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash'
