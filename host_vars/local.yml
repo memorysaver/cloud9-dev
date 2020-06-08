@@ -5,3 +5,6 @@ github_repos:
   -
     repo: git@github.com:memorysaver/streamtrader.git
     dir_name: streamtrader
+  -
+    repo: git@github.com:memorysaver/QuantitativeInvesting.git
+    dir_name: timeless
