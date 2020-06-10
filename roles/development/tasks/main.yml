@@ -72,7 +72,7 @@
     accept_hostkey: yes
   loop: "{{ github_repos }}"
 - name: install Oh-my-zsh
-  shell: 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+  command: 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
 - name: configure Oh-my-zsh
   template:
     src: zshrc.j2
@@ -81,8 +81,8 @@
     group: "{{ ansible_user_id }}"
     mode: 0644
 - name: install pyenv
-  shell: 'curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | zsh'
+  command: 'curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | zsh'
 - name: install python
-  shell: 'pyenv install 3.6.9 | zsh'
+  command: 'pyenv install 3.6.9 | zsh'
 - name: setup python global environment
-  shell: 'pyenv global 3.6.9 | zsh'
+  command: 'pyenv global 3.6.9 | zsh'
