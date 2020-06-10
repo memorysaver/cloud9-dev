@@ -84,3 +84,15 @@
     mode: 0644
 - name: install pyenv
   shell: 'curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash'
+- name: install pre-built s3fs
+  template:
+    src: s3fs
+    dest: "/usr/local/bin/s3fs"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: 0755
+- name: mount s3fs
+  command:
+    argv:
+      - mkdir ~/environment/s3fs
+      - s3fs s3fs-storage ~/environment/s3fs
