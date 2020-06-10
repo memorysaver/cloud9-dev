@@ -84,15 +84,11 @@
     mode: 0644
 - name: install pyenv
   shell: 'curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash'
-- name: install pre-built s3fs
-  template:
-    src: s3fs
-    dest: "/usr/local/bin/s3fs"
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
-    mode: 0755
 - name: mount s3fs
   command:
     argv:
+      - sudo yum install automake fuse fuse-devel gcc-c++ git libcurl-devel libxml2-devel make openssl-devel
+      - sudo cp ~/environment/github/cloud9-dev/roles/development/templates/s3fs /usr/local/bin
+      - sudo chmod 755 /usr/local/bin/s3fs 
       - mkdir ~/environment/s3fs
       - s3fs s3fs-storage ~/environment/s3fs
